@@ -1,25 +1,77 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Trade scam by Monkey", "Ocean")
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
 
---Main
-local Main = Window:NewTab("Main")
-local MainSection = Main:NewSection("Main")
+getgenv().SelectedOption = nil
 
 
-MainSection:NewButton("on/off trade scam only spawn world work", "trade scam only spawn world work", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/26kTsa/tradescampsx/main/.gitignore"))()
-end)
+function doStuff()
+    if getgenv().SelectedOption == "Shop" then
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(266.96402, 95.0132141, 238.074982)
+    elseif getgenv().SelectedOption == "Town" then
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(73.464, 91.0132, 238.075)
+	elseif getgenv().SelectedOption == "not work bug" then
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(403.103271, 93.4848633, 3163.07495)
+	end
+end
 
+local Window = Rayfield:CreateWindow({
+   Name = "Monkey hub",
+   LoadingTitle = "Monkey Hub",
+   LoadingSubtitle = "by 26kTsa",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = Monkey,
+      FileName = "Monkey hub"
+   },
+})
+local Main = Window:CreateTab("Main")
+local Section = Main:CreateSection("Main")
+local Button = Main:CreateButton({
+   Name = "Trade scam only Spawn world work",
+   Callback = function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/26kTsa/tradescampsx/main/.gitignore"))()
+   end,
+})
+local Button = Main:CreateButton({
+   Name = "Auto Farm all only Spawn world work",
+   Callback = function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/26kTsa/tradescampsx/main/.gitignore"))()
+   end,
+})
 
-MainSection:NewButton("Auto Farm", "Auto Farm all", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/26kTsa/tradescampsx/main/.gitignore"))()
-end)
+local Player = Window:CreateTab("Player")
+local Section = Player:CreateSection("Player")
+local JumpPower = Player:CreateSlider({
+   Name = "JumpPower",
+   Range = {50, 500},
+   Increment = 1,
+   Suffix = "JumpPower",
+   CurrentValue = 10,
+   Flag = "JumpPower",
+   Callback = function(s)
+       game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+   end,
+})
+local WalkSpeed = Player:CreateSlider({
+   Name = "WalkSpeed",
+   Range = {16, 500},
+   Increment = 1,
+   Suffix = "WalkSpeed",
+   CurrentValue = 10,
+   Flag = "WalkSpeed",
+   Callback = function(s)
+       game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+   end,
+})
 
---Teleport
-local Teleport = Window:NewTab("Teleport")
-local TeleportSection = Main:NewSection("Teleport")
-
-
-TeleportSection:NewDropdown("spawn world",{"spawn world", "cat world", "popcat world"}, function(currentOption)
-    print(currentOption)
-end)
+local Teleport = Window:CreateTab("Teleport")
+local Section = Teleport:CreateSection("Teleport")
+local Dropdown = Teleport:CreateDropdown({
+   Name = "Teleport Spawn world work",
+   Options = {"Shop","Town","not work bug"},
+   CurrentOption = "Teleport",
+   Flag = "Teleport",
+   Callback = function(Option)
+       getgenv().SelectedOption = Option
+	   doStuff()
+   end,
+})
